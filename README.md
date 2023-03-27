@@ -25,3 +25,4 @@
 ## Запуск в dev режиме
 ### `npm i`
 ### `npm start`
+![image](https://user-images.githubusercontent.com/38099842/227987749-1598e59a-2e18-4d37-a0cd-9663f3855d22.png)
