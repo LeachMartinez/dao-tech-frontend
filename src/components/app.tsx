@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 interface ITask {
   id: number;
@@ -11,7 +11,16 @@ export default function App () {
   const [tittleIsFilled, setTittleIsFilled] = useState<boolean>(false);
   const [isHidden, setIsHidden] = useState<boolean>(false);
   const [tasks, setTask] = useState<ITask[]>([]);
- 
+  const [countDoneTasks, setCountDoneTasks] = useState<number>(0);
+  const [countOpenTasks, setCountOpenTasks] = useState<number>(0);
+
+  useEffect(() => {
+    const tasksCount : number = tasks.length;
+    const doneTasksCount : number = tasks.filter((task : ITask) => task.complete === true).length;
+    setCountDoneTasks(doneTasksCount);
+    setCountOpenTasks(tasksCount - doneTasksCount);
+  }, [tasks])
+
   const onAddTask : React.FormEventHandler<HTMLFormElement> = (event)  => {
     event.preventDefault();
     const title : string = event.currentTarget.task_title.value.trim();
@@ -121,14 +130,20 @@ export default function App () {
           {
             tasks.length > 0 ? 
               <div className="task-list backdrop-blur-md scroll-smooth bg-white/30 rounded-xl drop-shadow-lg w-2/4 overflow-auto max-h-64 p-2.5">
-                <span>Задачи</span>
+                <div className="flex justify-between">
+                  <span>Задачи</span>
+                  <div>
+                    <span className="mr-2.5">Открыто: {countOpenTasks}</span>
+                    <span>Выполнено: {countDoneTasks}</span>
+                  </div>
+                </div>
                 <div className="task-list__wrapper">
                   {
                     tasks.map(task => {
                       return (
                         <div
                           key={task.id}
-                          id={`${task.id}`}
+                          id={task.id.toString()}
                           className={`p-2.5 mt-2.5 rounded-md flex items-center justify-between cursor-pointer ${task.complete ? 'bg-emerald-500' : 'bg-violet-500'} duration-150`}
                           onClick={(event) => onCompleteTask(event, task.id)}
                         >
