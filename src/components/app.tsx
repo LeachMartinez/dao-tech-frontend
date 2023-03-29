@@ -63,16 +63,14 @@ export default function App () {
           onTypeTitle = {onTypeTitle}
           tittleIsFilled = {tittleIsFilled}
         />
-        { tasks.length > 0 ? 
-          <TaskList
-            countOpenTasks = { countOpenTasks }
-            countDoneTasks = { countDoneTasks }
-            onCompleteTask = { onCompleteTask }
-            onRemoveTask = { onRemoveTask }
-            tasks = { tasks }
-          /> : null
-        }
-        </div>
+        <TaskList
+          countOpenTasks = { countOpenTasks }
+          countDoneTasks = { countDoneTasks }
+          onCompleteTask = { onCompleteTask }
+          onRemoveTask = { onRemoveTask }
+          tasks = { tasks }
+        />
       </div>
+    </div>
   )
 }
