@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  app:
+    container_name: dao-tech-frontend-dev
+    image: dao-tech-frontend-dev
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./src:/dao-tech-frontend/src
+    ports:
+      - 3005:3000

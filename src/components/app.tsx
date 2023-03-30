@@ -55,6 +55,7 @@ export default function App () {
       return [...newTaskList];
     });
   };
+  
   return (
     <div className="h-screen flex justify-center items-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
       <div className="w-1/2 h-auto flex justify-center items-center task-wrapper text-slate-50">
